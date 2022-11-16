@@ -12,8 +12,18 @@ const workflowToReactFlow = (
 
   const rfNode: RFNode = {
     id: `${wfNode.id}`,
-    data: wfNode,
-    position: { x: res.nodes.length * 180, y: 100 },
+    data: {
+      ...wfNode,
+      label: `${wfNode.gate} (${wfNode.id})`,
+    },
+    style: {
+      background: wfNode.status === "done" ? "green" : "red",
+      color: "white",
+    },
+    position: {
+      x: res.nodes.length % 2 === 1 ? 180 : 0,
+      y: res.nodes.length * 100,
+    },
   };
 
   const edges: Array<Edge> = wfNode.pros
@@ -21,7 +31,9 @@ const workflowToReactFlow = (
         id: `${wfNode.id}->${proNodeId}`,
         source: `${wfNode.id}`,
         target: `${proNodeId}`,
+        animated: wfNode.status === "done",
         type: "smoothstep",
+        markerEnd: { type: "arrow" },
       }))
     : [];
 

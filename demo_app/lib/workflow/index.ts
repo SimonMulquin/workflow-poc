@@ -90,27 +90,18 @@ const newNode = (def: Partial<TNode> & Pick<TNode, "id" | "pres" | "pros">) => {
 
 //default gate will be AND
 newNode({ pres: null, id: 0, pros: [1] });
-newNode({ pres: [0], id: 1, pros: [2] });
-newNode({ pres: [1], id: 2, pros: [3, 4] });
-newNode({ pres: [2], id: 3, pros: [5] });
-newNode({ pres: [2], id: 4, pros: [5] });
-newNode({ pres: [3, 4], id: 5, pros: [7], gate: "AND" });
-newNode({ pres: null, id: 6, pros: [7] });
-newNode({ pres: [5, 6], id: 7, pros: [9], gate: "OR" });
-newNode({ pres: null, id: 8, pros: [9] });
-newNode({ pres: [7, 8], id: 9, pros: null, gate: "XOR" });
+newNode({ pres: [0], id: 1, pros: [2, 3] });
+newNode({ pres: [1], id: 2, pros: [4] });
+newNode({ pres: [1], id: 3, pros: [4] });
+newNode({ pres: [2, 3], id: 4, pros: [6], gate: "AND" });
+newNode({ pres: null, id: 5, pros: [6] });
+newNode({ pres: [4, 5], id: 6, pros: [8], gate: "OR" });
+newNode({ pres: null, id: 7, pros: [8] });
+newNode({ pres: [6, 7], id: 8, pros: null, gate: "XOR" });
 
-console.log("START 8");
-demoNodes[8].do();
 console.log("START 0");
 demoNodes[0].do();
-console.log("START 6");
-demoNodes[6].do();
-console.log("CLOSE 8");
-demoNodes[8].emit("close");
-console.log("CLOSE 5");
-demoNodes[5].emit("close");
-console.log("CLOSE 6");
-demoNodes[6].emit("close");
-console.log("CLOSE 0");
-demoNodes[0].emit("close");
+
+console.log("START 7");
+demoNodes[7].do();
+
