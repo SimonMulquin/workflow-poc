@@ -14,4 +14,4 @@ export type TNode = {
   flows: Array<number>;
   pres: Array<number> | null;
   pros: Array<number> | null;
-};
+} & Methods;
